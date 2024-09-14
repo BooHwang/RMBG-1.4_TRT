@@ -1,4 +1,5 @@
 # RMBG-1.4_TRT
+The code and data of this repository are almost identical to BirfNet_TRT's
 
 <div align="center">
 <p>Use RMBG-1.4 For Image Matting</p>

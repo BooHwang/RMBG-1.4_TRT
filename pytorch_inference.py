@@ -50,7 +50,7 @@ class BriaRMBGPipe(nn.Module):
         size = img_rgb.shape[2:]
         img_tensor = self.preprocess(img_rgb)
         preds = self.model(img_tensor)
-        preds = torch.squeeze(F.interpolate(preds[0][0], size=tuple(size), mode='bilinear'), 0)
+        preds = F.interpolate(preds[0][0], size=tuple(size), mode='bilinear')
         ma = torch.max(preds)
         mi = torch.min(preds)
         mask = (preds-mi)/(ma-mi)
@@ -79,7 +79,7 @@ if __name__ == "__main__":
         print(f"inference use time: {(time.time()-t0):.3f} s")
         
         # print(preds.shape)
-        mask = preds.permute(1, 2, 0).cpu().numpy()
+        mask = preds.squeeze(0).permute(1, 2, 0).cpu().numpy()
         # print(mask.shape)
         
         # save as 4 channel image

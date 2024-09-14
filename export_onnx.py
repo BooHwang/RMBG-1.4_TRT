@@ -9,7 +9,7 @@
 '''
 
 '''
-/root/TensorRT-8.5.1.7/targets/x86_64-linux-gnu/bin/trtexec --onnx=RMBG_1.4.opt.onnx --minShapes=img:1x3x256x256 --optShapes=img:3x3x1024x1024 --maxShapes=img:5x3x1024x1024 --fp16 --saveEngine=RMBG_1.4.opt.plan
+/root/TensorRT-8.5.1.7/targets/x86_64-linux-gnu/bin/trtexec --onnx=RMBG_1.4.opt.onnx --minShapes=img:1x3x256x256 --optShapes=img:3x3x1024x1024 --maxShapes=img:5x3x1024x1024 --fp16 --saveEngine=RMBG_1.4.plan
 '''
 
 import torch

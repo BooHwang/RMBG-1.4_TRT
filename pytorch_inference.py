@@ -38,11 +38,18 @@ class BriaRMBGPipe(nn.Module):
         self.normalize_std = torch.tensor([1.0, 1.0, 1.0], device=self.device).view(1, 3, 1, 1)
         
     def preprocess(self, img_rgb: Tensor):
-        img_rgb = img_rgb.to(self.device)
-        img_rgb = img_rgb.float() / 255.0
-        img_resized = F.interpolate(img_rgb, size=[1024, 1024], mode='bilinear', align_corners=False)
+        '''
+        transform = transforms.Compose([
+            transforms.Resize((1024, 1024)),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+        ])
+        '''
+        img_tensor = img_tensor.to(self.device)
+        img_resized = F.interpolate(img_tensor, size=(1024, 1024), mode='bilinear', align_corners=False)
+        img_resized = img_resized.float() / 255.0
         img_normalized = (img_resized - self.normalize_mean) / self.normalize_std
-        
+
         return img_normalized
 
     @torch.no_grad()

@@ -45,7 +45,7 @@ class BriaRMBGPipe(nn.Module):
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
         ])
         '''
-        img_tensor = img_tensor.to(self.device).float()
+        img_tensor = img_rgb.to(self.device).float()
         img_resized = F.interpolate(img_tensor, size=(1024, 1024), mode='bilinear', align_corners=False)
         img_resized = img_resized / 255.0
         img_normalized = (img_resized - self.normalize_mean) / self.normalize_std
